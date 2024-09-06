@@ -13,13 +13,13 @@ const Products = () => {
 
  
     return (
-        <div className="grid grid-cols-2 w-[1200px] p-8">
-          <div className="w-[700px]">
-            <h1 className="font-bold">An Over view of your product</h1>
-          <div className="mt-10 w-[500px] ">
+        <div className="grid grid-cols-1 lg:grid-cols-2 w-full lg:w-[1200px] lg:p-8 gap-48 mx-auto">
+          <div className="w-full lg:w-[700px]">
+            <h1 className="font-boldv text-2xl">An Over view of your product</h1>
+          <div className="mt-10 w-full lg:w-[500px] ">
           {
                 cart.map((carts,idx)=>(
-                    <div className="overflow-x-auto shadow-md p-2 w-[500px] mx-2" key={carts._id}>
+                    <div className="lg:overflow-x-auto shadow-md p-2 w-[400px] lg:w-[500px] mx-2" key={carts._id}>
                     <table className="table">
                       <tbody>
                         <tr>
@@ -32,7 +32,7 @@ const Products = () => {
                                 <div className="mask mask-squircle h-12 w-12">
                                   <img
                                     src={carts?.productData?.image}
-                                    alt="Avatar Tailwind CSS Component" />
+                                    alt="Avatar" />
                                 </div>
                               </div>
                             
@@ -59,9 +59,9 @@ const Products = () => {
             }
           </div>
           </div>
-          <div className="w-[300px] ">
+          <div className="w-[300px] mx-auto">
            <h1 className="font-bold text-2xl"> Our Details</h1>
-           <div className="w-[150px]">
+           <div className="w-[300px] mx-auto shadow-sm shadow-black p-6 mt-10 text-[#838282]">
            <div>
            <div className="flex justify-between">
               <h1>Sub Total</h1>
@@ -76,10 +76,10 @@ const Products = () => {
               <h1>-$</h1>
             </div>
             <div className="flex justify-between">
-              <h1>Total</h1>
-              <h1>{totalPrice.toFixed(2)}</h1>
+              <h1 className="text-[#646465] font-semibold">Total</h1>
+              <h1 className="text-[#0f0f0e] font-semibold">{totalPrice.toFixed(2)}</h1>
             </div>
-            <button>Go To Checkout</button>
+            <button className="btn bg-black text-white w-full mt-4">Go To Checkout</button>
            </div>
            </div>
 

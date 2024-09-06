@@ -75,31 +75,31 @@ const Home = () => {
       
       
     return (
-        <div className="grid grid-cols-2 p-0 m-0  ">
-            <div className="mt-10 w-[250px] min-h-screen shadow-xl ">
-                <div className="space-y-4 w-[210px] ml-10">
+        <div className="grid grid-cols-2 p-0 m-0 w-full lg:w-[1200px] mx-auto">
+            <div className="mt-10 w-full lg:w-[250px] min-h-screen shadow-xl ">
+                <div className="space-y-4 w-full lg:w-[210px] lg:ml-10">
                     <button
-                        className={`w-[210px] p-2 flex ${activeButton === 'Rocking' ? 'bg-black text-white rounded-lg' : 'font-bold'}`}
+                        className={`w-full lg:w-[210px] p-2 flex ${activeButton === 'Rocking' ? 'bg-black text-white rounded-lg' : 'font-bold'}`}
                         onClick={() => handleButtonClick('Rocking')}
                     >
                         <p className="flex gap-4 items-center">Rocking Chair</p>
                     </button>
                     <button
-                        className={`w-[210px] p-2 flex ${activeButton === 'Side' ? 'bg-black text-white rounded-lg' : 'font-bold'}`}
+                        className={`w-full lg:w-[210px] p-2 flex ${activeButton === 'Side' ? 'bg-black text-white rounded-lg' : 'font-bold'}`}
                         onClick={() => handleButtonClick('Side')}
                     >
                         <p className="flex gap-4 items-center">Side Chair</p>
                     </button>
                     <button
-                        className={`w-[210px] p-2 flex ${activeButton === 'Lounge' ? 'bg-black text-white rounded-lg' : 'font-bold'}`}
+                        className={`w-full lg:w-[210px] p-2 flex ${activeButton === 'Lounge' ? 'bg-black text-white rounded-lg' : 'font-bold'}`}
                         onClick={() => handleButtonClick('Lounge')}
                     >
                         <p className="flex gap-4 items-center">Lounge Chair</p>
                     </button>
                 </div>
             </div>
-            <div className=" w-[1000px]  -ml-[390px] min-h-screen">
-               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-8">
+            <div className=" w-full lg:w-[1000px] -ml-24  lg:-ml-[390px] min-h-screen">
+               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:p-8">
                 {
                     filteredProducts.map(product => (
                       
