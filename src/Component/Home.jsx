@@ -1,17 +1,23 @@
+
+import { useQuery, useMutation } from '@tanstack/react-query';
 import axios from "axios";
-import { useEffect, useState } from "react";
+import {  useCallback, useContext, useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { MdOutlineShoppingBag } from "react-icons/md";
+import { AuthContext } from '../AuthProvider/AuthProvider';
+
 
 
 
 const Home = () => {
-
+  const {addToCart} = useContext(AuthContext)
     const [activeButton, setActiveButton] = useState('');
     const [products, setProducts] = useState([])
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [currentPage, setCurrentPage] = useState(1)
     const [count, setCount] = useState(0)
     const [pages, setPages] = useState(6)
+  
     const pagenumber = Math.ceil(count / pages)
     const pageButton = [...Array(pagenumber).keys()].map(item => item + 1)
     useEffect(() => {
@@ -61,6 +67,13 @@ const Home = () => {
     const handlePagination = (v) => {
         setCurrentPage(v)
       }
+
+
+      
+
+  
+      
+      
     return (
         <div className="grid grid-cols-2 p-0 m-0  ">
             <div className="mt-10 w-[250px] min-h-screen shadow-xl ">
@@ -106,7 +119,9 @@ const Home = () => {
                                 </div>
                                 <p>{product?.description}</p>
                                 <div className="card-actions w-full">
-                                    <button className="btn bg-black text-white w-full"><MdOutlineShoppingBag />
+                                    <button className="btn bg-black text-white w-full"
+                                    onClick={() => addToCart(product)}
+                                    ><MdOutlineShoppingBag />
                                     Add To Cart</button>
                                 </div>
                             </div>
@@ -116,7 +131,7 @@ const Home = () => {
                 }
                </div>
                  {/* pagination */}
-      <div className='flex justify-center w-full md:w-[400px] lg:w-[1260px] mt-12'>
+      <div className='flex justify-center w-full md:w-[400px] lg:w-[1000px] mt-12'>
         <button
           disabled={currentPage === 1}
           onClick={() => handlePagination(currentPage - 1)}
@@ -137,7 +152,6 @@ const Home = () => {
               />
             </svg>
 
-            {/* <span className='mx-1'><span className='hidden lg:flex'>previous</span></span> */}
           </div>
         </button>
 
@@ -156,7 +170,6 @@ const Home = () => {
           onClick={() => handlePagination(currentPage + 1)}
           className='px-4 py-2 mx-1 text-gray-700 transition-colors duration-300 transform bg-gray-200 rounded-md hover:bg-blue-500 disabled:hover:bg-gray-200 disabled:hover:text-gray-500 hover:text-white disabled:cursor-not-allowed disabled:text-gray-500'>
           <div className='flex items-center -mx-1'>
-            {/* <span className='mx-1'><span className='hidden lg:flex'>Next</span></span> */}
 
             <svg
               xmlns='http://www.w3.org/2000/svg'

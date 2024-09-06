@@ -13,6 +13,10 @@ import Register from './Component/Register.jsx';
 import PrivateRoute from './privateRoute/privateRoute.jsx';
 import Home from './Component/Home.jsx';
 import CreateProduct from './Component/CreateProduct.jsx';
+import Products from './Component/Products.jsx';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+const queryClient = new QueryClient()
 const router = createBrowserRouter([
   {
     path: "/",
@@ -26,6 +30,10 @@ const router = createBrowserRouter([
         path:"/create",
         element:<CreateProduct></CreateProduct>
       },
+      {
+        path:"/products",
+        element:<Products></Products>
+      },
 
      
     ]
@@ -36,9 +44,11 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+     <QueryClientProvider client={queryClient}>
     <AuthProvider>
     <RouterProvider router={router} />
     <Toaster></Toaster>
     </AuthProvider>
-  </StrictMode>,
+    </QueryClientProvider>
+  </StrictMode>
 )

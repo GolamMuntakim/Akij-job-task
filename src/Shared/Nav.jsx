@@ -6,7 +6,10 @@ import { MdOutlineShoppingBag } from "react-icons/md";
 
 // import './shared.css'
 const Nav = () => {
-  const {user,logOut} = useContext(AuthContext)
+  const {user,logOut,cart} = useContext(AuthContext)
+  console.log(cart)
+
+  
   const [theme, setTheme] = useState(()=>{
     return localStorage.getItem('theme') || 'light';
 })
@@ -19,6 +22,7 @@ const handleToggle = e => {
   setTheme(prevTheme=>(prevTheme==='light' ? 'dark' : 'light'))
  
 }
+
   
     return (
         <div>
@@ -44,9 +48,9 @@ const handleToggle = e => {
         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
         <div><NavLink to="/">Home</NavLink></div>
     <div><NavLink to="products" >Products</NavLink></div>
-    <div><NavLink to="products" >Categoris</NavLink></div>
-    <div><NavLink to="products" >Custom</NavLink></div>
-    <div><NavLink to="products" >Create Product</NavLink></div>
+    <div><NavLink to="" >Categoris</NavLink></div>
+    <div><NavLink to="" >Custom</NavLink></div>
+    <div><NavLink to="create" >Create Product</NavLink></div>
       </ul>
     </div>
     <a className="lobster-regular text-xl flex items-center gap-2"><img src="images/logo.JPG" className='h-16 hidden lg:flex'/><div className='font-bold'>Furni<span className='text-[#1f99f4]'>Flex</span></div></a>
@@ -56,21 +60,20 @@ const handleToggle = e => {
     <div className='flex gap-4'>
     <div><NavLink to="/" style={({isActive})=>(isActive?{fontWeight:"bold", color:"black"}:{font:"light"})}>Home</NavLink></div>
     <div><NavLink to="products" style={({isActive})=>(isActive?{fontWeight:"bold", color:"black"}:{font:"light"})}>Products</NavLink></div>
-    <div><NavLink to="products" style={({isActive})=>(isActive?{fontWeight:"bold", color:"black"}:{font:"light"})}>Categoris</NavLink></div>
-    <div><NavLink to="products" style={({isActive})=>(isActive?{fontWeight:"bold", color:"black"}:{font:"light"})}>Custom</NavLink></div>
+    <div><NavLink to="/category" style={({isActive})=>(isActive?{fontWeight:"bold", color:"black"}:{font:"light"})}>Categoris</NavLink></div>
+    <div><NavLink to="custome" style={({isActive})=>(isActive?{fontWeight:"bold", color:"black"}:{font:"light"})}>Custom</NavLink></div>
     <div><NavLink to="create" style={({isActive})=>(isActive?{fontWeight:"bold", color:"black"}:{font:"light"})}>Create Product</NavLink></div>
     </div>
     </ul>
   </div>
   <div className="navbar-end">
   <div className="indicator mr-4">
-  <span className="indicator-item indicator-bottom badge bg-[#333233] text-white">0</span>
+  <span className="indicator-item indicator-bottom badge bg-[#333233] text-white">{cart.length}</span>
   <div className=" grid  place-items-center"><MdOutlineShoppingBag className='text-2xl'/></div>
 </div>
     <details className="dropdown dropdown-end">
   <summary className="btn m-1">
     {/* open or close */}
-   
     <div className="avatar">
   <div className="w-10 rounded-full">
     <img src={user?.photoURL} />
