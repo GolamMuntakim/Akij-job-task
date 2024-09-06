@@ -4,12 +4,13 @@ import { AuthContext } from "../AuthProvider/AuthProvider";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { FcGoogle } from 'react-icons/fc';
-import { FaApple } from "react-icons/fa";
+import { FaApple, FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 
 
 
 const Login = () => {
     const { signIn, signInWithGoogle, user, loading } = useContext(AuthContext)
+    const [showPassword, setShowPassword] = useState(false)
     const navigate = useNavigate()
     const location = useLocation()
     const [error, setError] = useState('')
@@ -61,17 +62,23 @@ const Login = () => {
             <div className="ml-[200px] h-screen">
              
                 <form className="card-body" onSubmit={handleSignIn}>
-                <h1>Welcome Back!</h1>
-                <p>Enter Your Credentials to access your account</p>
-                <div className="form-control">
+                <h1 className="text-4xl font-bold">Welcome Back!</h1>
+                <p className="text-[#b1b1b0]">Enter Your Credentials to access your account</p>
+                <div className="form-control mt-10">
                 
                   <input type="email" name='email' placeholder="Enter your email" className="input input-bordered" required />
                 </div>
                 <div className="form-control">
                  
-                  <input type="password" name='password' placeholder="Enter your password" className="input input-bordered" required />
+                  <input type={showPassword ? "text" : "password"} name='password' placeholder="Enter your password" className="input input-bordered" required />
+                  <span className="absolute left-[570px] top-[170px]" onClick={() => setShowPassword(!showPassword)}
+                                    >
+                                        {
+                                            showPassword ? <FaRegEyeSlash /> : <FaRegEye />
+                                        }
+                                    </span>
                   <label className="label gap-4 justify-end">
-                    <a href="#"><small>Forget Password</small></a>
+                    <a href="#"><small className="text-[#52b1f7] font-semibold">Forget Password</small></a>
                    
                   </label>
                   <div className="flex gap-2 items-center">

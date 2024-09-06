@@ -6,7 +6,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { FcGoogle } from 'react-icons/fc';
-import { FaApple } from "react-icons/fa";
+import { FaApple, FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { imageupload } from "../api/utilities";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 
@@ -14,6 +14,7 @@ import { AuthContext } from "../AuthProvider/AuthProvider";
 
 const Register = () => {
     const navigate = useNavigate()
+    const [showPassword, setShowPassword] = useState(false)
   const { signIn, signInWithGoogle, createUser, updateUserProfile, user, setUser, loading } = useContext(AuthContext)
   const handleGoogleSignin = async () => {
     try {
@@ -65,11 +66,11 @@ const Register = () => {
         <div className="grid grid-cols-2 w-full items-center ">
             <div className="ml-[150px] h-screen">
                 <form className="card-body" onSubmit={handleSignUp}>
-                <h1 className="text-center">Welcome To</h1>
-                <h1 className="text-center">Furni<span>Flex</span></h1>
-                <p className="text-center">Signup for purchase your desire product</p>
+                <h1 className="text-center font-bold">Welcome To</h1>
+                <h1 className="text-center text-4xl font-bold">Furni<span className="text-[#1f99f4]">Flex</span></h1>
+                <p className="text-center text-[#cecfce]">Signup for purchase your desire product</p>
              
-                <div className="form-control">
+                <div className="form-control mt-4">
                 <div className="flex gap-2 items-center">
                <div>
               
@@ -89,7 +90,13 @@ const Register = () => {
                 <div className="flex items-center gap-2">
                 <div>
                  
-                  <input type="password" name='password' placeholder="Enter your password" className="input input-bordered" required />
+                  <input type={showPassword ? "text" : "password"} name='password' placeholder="Enter your password" className="input input-bordered relative" required />
+                  <span className="absolute left-[370px] bottom-[295px]" onClick={() => setShowPassword(!showPassword)}
+                                    >
+                                        {
+                                            showPassword ? <FaRegEyeSlash /> : <FaRegEye />
+                                        }
+                                    </span>
                  </div>
 
                   <div className="form-control">
