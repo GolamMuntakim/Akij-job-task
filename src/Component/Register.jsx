@@ -63,8 +63,8 @@ const Register = () => {
   }
   if (user || loading) return <div className="min-h-screen w-full flex items-center justify-center"><span className="loading loading-infinity loading-lg"></span></div>
     return (
-        <div className="grid grid-cols-2 w-full items-center ">
-            <div className="ml-[150px] h-screen">
+        <div className="grid grid-cols-2 w-full lg:w-[1250px] items-center ">
+            <div className="lg:ml-[150px] h-screen w-[400px]">
                 <form className="card-body" onSubmit={handleSignUp}>
                 <h1 className="text-center font-bold">Welcome To</h1>
                 <h1 className="text-center text-4xl font-bold">Furni<span className="text-[#1f99f4]">Flex</span></h1>
@@ -84,14 +84,14 @@ const Register = () => {
 
                 </div>
                  
-                  <input type="email" name='email' placeholder="Enter your email" className="input input-bordered mt-2" required />
+                  <input type="email" name='email' placeholder="Enter your email" className="input input-bordered mt-2 w-[434px]" required />
                 </div>
                 <div className="form-control">
                 <div className="flex items-center gap-2">
                 <div>
                  
                   <input type={showPassword ? "text" : "password"} name='password' placeholder="Enter your password" className="input input-bordered relative" required />
-                  <span className="absolute left-[370px] bottom-[295px]" onClick={() => setShowPassword(!showPassword)}
+                  <span className="absolute left-[210px] top-[290px] lg:left-[370px] lg:top-[290px]" onClick={() => setShowPassword(!showPassword)}
                                     >
                                         {
                                             showPassword ? <FaRegEyeSlash /> : <FaRegEye />
@@ -101,7 +101,7 @@ const Register = () => {
 
                   <div className="form-control">
                 
-                <input type="file" name="image" id="image" accept="image/*" className="file-input file-input-bordered file-input-primary w-full max-w-xs" required />
+                <input type="file" name="image" id="image" accept="image/*" className="file-input file-input-bordered file-input-primary  w-[215px]" required />
               </div>
                 </div>
 
@@ -125,7 +125,7 @@ const Register = () => {
               </div>
               </form>
             </div>
-            <div>
+            <div className="hidden lg:flex">
                 <img className="w-full object-cover bg-cover h-screen" src="images/login.JPG" alt=""  />
             </div>
         </div>

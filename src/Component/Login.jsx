@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -9,10 +9,9 @@ import { FaApple, FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 
 
 const Login = () => {
-    const { signIn, signInWithGoogle, user, loading } = useContext(AuthContext)
+    const { signIn, signInWithGoogle, user } = useContext(AuthContext)
     const [showPassword, setShowPassword] = useState(false)
     const navigate = useNavigate()
-    const location = useLocation()
     const [error, setError] = useState('')
   
     useEffect(() => {
@@ -58,20 +57,19 @@ const Login = () => {
         }
       }
     return (
-        <div className="grid grid-cols-2 w-full items-center">
-            <div className="ml-[200px] h-screen">
-             
+        <div className="grid grid-cols-2 w-full lg:w-[1250px] items-center">
+            <div className="ml-10 lg:ml-[200px] h-screen w-[350px]  mx-auto lg:w-[450px] -mt-10">
                 <form className="card-body" onSubmit={handleSignIn}>
                 <h1 className="text-4xl font-bold">Welcome Back!</h1>
                 <p className="text-[#b1b1b0]">Enter Your Credentials to access your account</p>
-                <div className="form-control mt-10">
+                <div className="form-control mt-2">
                 
                   <input type="email" name='email' placeholder="Enter your email" className="input input-bordered" required />
                 </div>
                 <div className="form-control">
                  
                   <input type={showPassword ? "text" : "password"} name='password' placeholder="Enter your password" className="input input-bordered" required />
-                  <span className="absolute left-[570px] top-[170px]" onClick={() => setShowPassword(!showPassword)}
+                  <span className="absolute top-[180px] left-[290px] lg:left-[570px] lg:top-[170px]" onClick={() => setShowPassword(!showPassword)}
                                     >
                                         {
                                             showPassword ? <FaRegEyeSlash /> : <FaRegEye />
@@ -100,7 +98,7 @@ const Login = () => {
               </div>
               </form>
             </div>
-            <div>
+            <div className="hidden lg:flex">
                 <img className="w-full object-cover bg-cover h-screen" src="images/login.JPG" alt=""  />
             </div>
         </div>
