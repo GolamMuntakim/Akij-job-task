@@ -2,6 +2,7 @@ import axios from "axios";
 import { imageupload } from "../api/utilities";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 
 
@@ -9,45 +10,50 @@ const CreateProduct = () => {
     // const { user } = useContext(AuthContext)
     // const [startDate, setStartDate] = useState(new Date())
     const navigate = useNavigate()
-    const handleFormSubmit = async e =>{
+    const handleFormSubmit = async e => {
         e.preventDefault()
-        const form = e.target 
-        const name = form.name.value 
+        const form = e.target
+        const name = form.name.value
         const image = form.image.files[0]
-        const price = form.price.value 
+        const price = form.price.value
         const type = form.type.value
         const discount = form.discount.value
         const Parcentage = form.Parcentage.value
         const description = form.description.value
-        
-        try{
+
+        try {
             const image_url = await imageupload(image)
-            const productData = {name,image:image_url,price,type,discount,Parcentage,description}
-            const {data} = await axios.post(`${import.meta.env.VITE_API_URL}/product`, productData)
+            const productData = { name, image: image_url, price, type, discount, Parcentage, description }
+            const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/product`, productData)
             console.log(data)
             toast.success('Product Added Succesfully')
             navigate('/')
-        }catch(err){
+        } catch (err) {
             console.log(err)
         }
 
     }
     return (
         <div>
-              <div className=" bg-base-200 min-h-screen">
+            <Helmet>
+                <title>
+                    Create Product
+                </title>
+            </Helmet>
+            <div className=" bg-base-200 min-h-screen">
                 <div className="hero-content ">
                     <div className=" bg-base-100 w-full lg:w-[1000px]  shrink-0 shadow-2xl">
-                        <form className="card-body" 
-                        onSubmit={handleFormSubmit}
+                        <form className="card-body"
+                            onSubmit={handleFormSubmit}
                         >
                             <div className="grid grid-cols-2 gap-8">
-                            <div className="form-control">
+                                <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Product Name</span>
                                     </label>
                                     <input type="text" name="name" placeholder="Product Name" className="input input-bordered" required />
                                 </div>
-                            <div className='flex flex-col gap-2 '>
+                                <div className='flex flex-col gap-2 '>
                                     <label className="label" htmlFor='type'>
                                         <span className="label-text">Product Type</span>
                                     </label>
@@ -62,7 +68,7 @@ const CreateProduct = () => {
                                         <option value='Lounge'>Lounge Chair</option>
                                     </select>
                                 </div>
-                              
+
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Product Image</span>
@@ -87,17 +93,17 @@ const CreateProduct = () => {
                                     </label>
                                     <input type="number" name="Parcentage" placeholder="Parcentage" className="input input-bordered" required />
                                 </div>
-                                
-                               
-                              
+
+
+
                             </div>
                             <div className="form-control">
-                                    <label className="label">
-                                        <span className="label-text">Description</span>
-                                    </label>
-                                    <input type="text" name="description" placeholder="Description" className="input input-bordered w-full" required />
-                                </div>
-                           
+                                <label className="label">
+                                    <span className="label-text">Description</span>
+                                </label>
+                                <input type="text" name="description" placeholder="Description" className="input input-bordered w-full" required />
+                            </div>
+
                             <div className="form-control mt-6 flex justify-center items-center">
                                 <button className="btn bg-black text-white w-[200px]">Add Product</button>
                             </div>

@@ -14,6 +14,7 @@ import PrivateRoute from './privateRoute/privateRoute.jsx';
 import Home from './Component/Home.jsx';
 import CreateProduct from './Component/CreateProduct.jsx';
 import Products from './Component/Products.jsx';
+import { HelmetProvider } from 'react-helmet-async';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const queryClient = new QueryClient()
@@ -44,11 +45,13 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+       <HelmetProvider>
      <QueryClientProvider client={queryClient}>
-    <AuthProvider>
+     <AuthProvider>
     <RouterProvider router={router} />
     <Toaster></Toaster>
     </AuthProvider>
     </QueryClientProvider>
+    </HelmetProvider>
   </StrictMode>
 )

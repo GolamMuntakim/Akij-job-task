@@ -2,10 +2,11 @@
 # website url : https://akij-e-commerce.netlify.app
 # client github link : https://github.com/GolamMuntakim/Akij-job-task
 # server github link : https://github.com/GolamMuntakim/Akij-server
-# used technology : axios, firebase ,jsonwebtoken, react router dom, react hot toast, daisy ui
+# used technology : axios, firebase ,jsonwebtoken, react router dom, react hot toast, daisy ui,react helmate
 # Features:
 1. pagination, data will come pagewise
 2. user can create product cart , implement curd operation 
+3.Dark and light mode
 # How to start the project:
 * Forntend : 
 1. clone the project from guthub using git clone .
